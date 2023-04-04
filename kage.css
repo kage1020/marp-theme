@@ -1,0 +1,81 @@
+/* @theme kage */
+
+:root {
+    --primary-color: #368F8B;
+    --secondary-color: #160F29;
+    --primary-sub-color: #246A73;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--secondary-color);
+}
+
+h1, h2 {
+    border-bottom: 4px solid var(--primary-color);
+}
+
+h3 {
+    font-size: 1.15em;
+}
+
+section {
+    justify-content: start;
+    padding: 2.5rem;
+}
+
+section.cover {
+    justify-content: center;
+    border: 8px solid var(--primary-color);
+    border-image: linear-gradient(to right, var(--primary-color), var(--primary-sub-color));
+    border-image-slice: 1;
+}
+
+section > header {
+    width: 98%;
+    text-align: right;
+    background-color: var(--primary-color);
+    color: white;
+    top: 0;
+    left: 0;
+    padding: 0.5rem;
+}
+
+section > footer {
+    width: 87%;
+    text-align: right;
+    bottom: 0;
+    left: 0;
+    padding: 0.5rem 3rem 0.325rem;
+    border-bottom: 16px solid var(--secondary-color);
+}
+
+section > footer::after {
+    content: "";
+    position: absolute;
+    width: 30%;
+    bottom: -16px;
+    right: 0;
+    border-bottom: 16px solid var(--primary-sub-color);
+}
+
+img[alt~="center"] {
+    display: block;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    place-items: center;
+}
+
+.grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@import 'default'
