@@ -1,5 +1,7 @@
 /* @theme kage */
 
+@import 'default';
+
 :root {
     --primary-color: #368F8B;
     --secondary-color: #160F29;
@@ -63,6 +65,14 @@ img[alt~="center"] {
     margin: 0 auto;
 }
 
+img[alt~="right"] {
+    display: block;
+    position: absolute;
+    right: 1%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
 .flex {
     display: flex;
     justify-content: center;
@@ -77,5 +87,3 @@ img[alt~="center"] {
 .grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
 }
-
-@import 'default'
