@@ -60,6 +60,14 @@ section > footer::after {
     border-bottom: 16px solid var(--primary-sub-color);
 }
 
+section > h2 + *:is(h3, :nth-child(2)) {
+    margin-top: 0;
+}
+
+section > p:has(img[alt~="right"]) {
+    margin: 0;
+}
+
 img[alt~="center"] {
     display: block;
     margin: 0 auto;
