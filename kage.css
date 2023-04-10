@@ -76,7 +76,7 @@ img[alt~="center"] {
 img[alt~="right"] {
     display: block;
     position: absolute;
-    right: 1%;
+    right: 3%;
     top: 50%;
     transform: translateY(-50%);
 }
