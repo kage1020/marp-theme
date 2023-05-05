@@ -88,8 +88,6 @@ img[alt~="right"] {
     display: block;
     position: absolute;
     right: 3%;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .flex {
@@ -119,4 +117,10 @@ section.todo:not(.cover)::after {
 section.todo:not(.cover) header {
     background-color: var(--tertiary-color);
     color: var(--secondary-color);
+}
+
+hr {
+    background-color: var(--primary-color);
+    padding-top: 1px;
+    margin: 1rem;
 }
