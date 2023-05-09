@@ -103,3 +103,19 @@ _class: todo
     </ul>
 </div>
 ```
+
+### itembox
+
+```css
+.itembox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    border: 8px solid var(--primary-color);
+    border-image: linear-gradient(to right, var(--primary-color), var(--primary-dark-color));
+    border-image-slice: 1;
+    background-color: rgba(var(--primary-color-rgb), .2);
+}
+```
