@@ -176,43 +176,6 @@ strong {
     text-align: right;
 }
 
-section.items li {
-    margin: 1rem 0;
-}
-
-/*
-section > h2 + *:is(h3, :nth-child(2)) {
-    margin-top: 0;
-}
-
-section > p:has(img[alt~="right"]) {
-    margin: 0;
-}
-
-p {
-    position: relative;
-}
-
-hr {
-    background-color: var(--primary-color);
-    padding-top: 1px;
-    margin: 1rem;
-}
-
-mjx-container {
-    padding: 0.25rem 0;
-}
-
-code.color:before {
-    content: "";
-    display: inline-block;
-    position: relative;
-    background-color: var(--color);
-    width: 0.5rem;
-    height: 0.5rem;
-    margin-right: 0.25rem;
-}*/
-
 /*
 Tailwind CSS
 */
