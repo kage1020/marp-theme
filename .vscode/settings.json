@@ -1,6 +1,7 @@
 {
   "markdown.marp.themes": [
     "https://raw.githubusercontent.com/kage1020/marp-theme/main/kage.css",
-    "https://raw.githubusercontent.com/kage1020/marp-theme/main/kage-academic.css"
+    "https://raw.githubusercontent.com/kage1020/marp-theme/main/kage-academic.css",
+    "https://raw.githubusercontent.com/kage1020/marp-theme/main/word.css"
   ]
 }

@@ -1,0 +1,196 @@
+/* @theme word */
+
+:root {
+  --primary-color: 15, 71, 97;
+  --secondary-color: 64, 64, 64;
+  --tertiary-color: 89, 89, 89;
+}
+
+@font-face {
+  font-family: 'Cambria Math';
+}
+
+@font-face {
+  font-family: 游明朝;
+}
+
+@font-face {
+  font-family: '游ゴシック Light';
+}
+
+@font-face {
+  font-family: Wingdings;
+}
+
+section {
+  width: 210mm;
+  height: 297mm;
+  background-color: white;
+  padding: 99.25pt 30mm 30mm 30mm;
+  color: black;
+  font-family: 游明朝, 'Cambria Math', serif;
+  word-wrap: break-word;
+}
+
+p,
+li,
+div {
+  margin: 0mm;
+  text-align: justify;
+  font-size: 10.5pt;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p.h7,
+p.h8,
+p.h9 {
+  text-align: justify;
+  break-after: avoid;
+  font-family: '游ゴシック Light';
+  font-weight: normal;
+}
+
+h1 {
+  margin: 14pt 0mm 4pt 0mm;
+  font-size: 16pt;
+}
+
+h2 {
+  margin: 8pt 0mm 4pt 0mm;
+  font-size: 14pt;
+}
+
+h3 {
+  margin: 8pt 0mm 4pt 0mm;
+  font-size: 12pt;
+}
+
+h4 {
+  margin: 4pt 0mm 2pt 0mm;
+  font-size: 10.5pt;
+}
+
+h5 {
+  margin: 4pt 0mm 2pt 5pt;
+  font-size: 10.5pt;
+}
+
+h6 {
+  margin: 4pt 0mm 2pt 10pt;
+  font-size: 10.5pt;
+}
+
+p.h7 {
+  margin: 4pt 0mm 2pt 15pt;
+  font-size: 10.5pt;
+}
+
+p.h8 {
+  margin: 4pt 0mm 2pt 20pt;
+  font-size: 10.5pt;
+}
+
+p.h9 {
+  margin: 4pt 0mm 2pt 25pt;
+  font-size: 10.5pt;
+}
+
+p.title {
+  margin: 0mm 0mm 4pt 0mm;
+  text-align: center;
+  font-size: 28pt;
+  font-family: '游ゴシック Light';
+  letter-spacing: -0.5pt;
+}
+
+p.subtitle {
+  margin: 0mm 0mm 4pt 0mm;
+  text-align: center;
+  font-size: 16pt;
+  font-family: '游ゴシック Light';
+  color: rgb(var(--secondary-color));
+  letter-spacing: 0.75pt;
+}
+
+p.reference {
+  line-height: 1.5;
+  font-family: '游明朝', serif;
+  font-variant: small-caps;
+  color: rgb(var(--primary-color));
+  letter-spacing: 0.25pt;
+  font-weight: bold;
+}
+
+p.quote {
+  margin: 18pt 43.2pt;
+  padding: 10pt 0mm;
+  text-align: center;
+  line-height: 1.5;
+  font-family: '游明朝', serif;
+  border-top: 1px solid rgb(var(--primary-color));
+  border-bottom: 1px solid rgb(var(--primary-color));
+  color: rgb(var(--primary-color));
+  font-style: italic;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  border: solid currentColor 1px;
+  padding: 0mm 5.4pt;
+  text-align: left;
+}
+
+ul,
+ol {
+  padding-left: 0;
+}
+
+li {
+  margin-left: 22pt;
+}
+
+ul li::marker,
+ul ul ul ul ul li::marker {
+  content: '•';
+  font-variant: full-width;
+}
+
+ul ul li::marker,
+ul ul ul ul ul ul li::marker {
+  content: '⬥';
+  font-variant: full-width;
+}
+
+ul ul ul li::marker,
+ul ul ul ul ul ul ul li::marker {
+  content: '🗸';
+  font-variant: full-width;
+}
+
+ul ul ul ul li::marker,
+ul ul ul ul ul ul ul ul li::marker {
+  content: '➢';
+  font-variant: full-width;
+}
+
+ol {
+  counter-reset: ol;
+}
+
+ol li {
+  counter-increment: ol;
+}
+
+ol li::marker {
+  content: counters(ol, '.') '. ';
+}
