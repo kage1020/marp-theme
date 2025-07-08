@@ -9,8 +9,8 @@ use `.vscode/settings.json` to set the theme
 ```json
 {
   "markdown.marp.themes": [
-    "https://raw.githubusercontent.com/kage1020/marp-theme/main/kage.css",
-    "https://raw.githubusercontent.com/kage1020/marp-theme/main/kage-academic.css"
+    "https://raw.githubusercontent.com/kage1020/marp-theme/main/kage1020.css",
+    "https://raw.githubusercontent.com/kage1020/marp-theme/main/kage1020-academic.css"
   ]
 }
 ```
@@ -20,7 +20,7 @@ then, set frontmatter in markdown file
 ```markdown
 ---
 marp: true
-theme: kage
+theme: kage1020
 ---
 ```
 
