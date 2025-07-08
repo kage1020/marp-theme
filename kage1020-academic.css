@@ -1,24 +1,46 @@
-/* @theme kage-academic */
+/* @theme kage1020-academic */
 
-@import 'default';
+@import "default";
 
 :root {
-  --primary-color: #368f8b;
-  --primary-color-rgb: 54, 143, 139;
-  --secondary-color: #160f29;
-  --secondary-color-rgb: 22, 15, 41;
-  --tertiary-color: #f3dfc1;
-  --tertiary-color-rgb: 243, 223, 193;
-  --primary-dark-color: #246a73;
-  --primary-dark-color-rgb: 36, 106, 115;
-  --tertiary-dark-color: #ddbea8;
-  --tertiary-dark-color-rgb: 221, 190, 168;
+  --primary-50: 226, 241, 241;
+  --primary-100: 182, 220, 220;
+  --primary-200: 136, 199, 198;
+  --primary-300: 93, 176, 175;
+  --primary-400: 67, 160, 157;
+  --primary-500: 54, 143, 139;
+  --primary-600: 50, 130, 125;
+  --primary-700: 46, 114, 109;
+  --primary-800: 43, 98, 94;
+  --primary-900: 37, 70, 66;
+
+  --secondary-50: 242, 230, 241;
+  --secondary-100: 224, 192, 223;
+  --secondary-200: 204, 151, 202;
+  --secondary-300: 182, 111, 180;
+  --secondary-400: 166, 83, 164;
+  --secondary-500: 151, 59, 149;
+  --secondary-600: 139, 54, 143;
+  --secondary-700: 122, 47, 134;
+  --secondary-800: 107, 43, 125;
+  --secondary-900: 80, 34, 107;
+
+  --complementary-50: 247, 235, 239;
+  --complementary-100: 238, 206, 213;
+  --complementary-200: 213, 155, 163;
+  --complementary-300: 196, 120, 129;
+  --complementary-400: 204, 92, 103;
+  --complementary-500: 208, 79, 85;
+  --complementary-600: 192, 72, 81;
+  --complementary-700: 174, 64, 74;
+  --complementary-800: 161, 59, 67;
+  --complementary-900: 143, 54, 58;
 }
 
 * {
   box-sizing: border-box;
   font-size: 1.125rem;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: "Noto Sans JP", sans-serif;
 }
 
 h1,
@@ -27,13 +49,13 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--secondary-color);
+  color: black;
 }
 
 h1 {
   font-size: 1.875rem;
   line-height: 1.5;
-  border-bottom: 5px solid var(--primary-color);
+  border-bottom: 5px solid rgb(var(--primary-500));
   padding: 0.5rem;
   margin-bottom: 3rem;
 }
@@ -41,21 +63,21 @@ h1 {
 h2 {
   font-size: 1.625rem;
   line-height: 1.25;
-  border-bottom: 5px solid var(--primary-color);
+  border-bottom: 5px solid rgb(var(--primary-500));
   padding: 0.25rem 0.5rem;
 }
 
 h3 {
   font-size: 1.375rem;
   line-height: 1.125;
-  border-bottom: 5px solid var(--primary-color);
+  border-bottom: 5px solid rgb(var(--primary-500));
   padding: 0.25rem 0.5rem;
 }
 
 h4 {
   font-size: 1.125rem;
   line-height: 1.125;
-  border-bottom: 5px solid var(--primary-color);
+  border-bottom: 5px solid rgb(var(--primary-500));
   padding: 0.25rem 0.5rem;
 }
 
@@ -87,21 +109,22 @@ section:has(h4),
 section:has(h5),
 section:has(h6) {
   justify-content: start;
+  align-content: start;
 }
 
-img[alt~='center'],
-video[alt~='center'] {
+img[alt~="center"],
+video[alt~="center"] {
   display: block;
   margin: 0 auto;
 }
 
 table {
-  align-self: center;
+  margin: 0 auto;
   overflow: visible;
 }
 
 thead th {
-  background-color: var(--primary-dark-color);
+  background-color: rgb(var(--primary-800));
   color: white;
   position: relative;
 }
@@ -112,7 +135,7 @@ th.down {
 }
 
 th.up::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 25%;
   right: 0.5rem;
@@ -122,7 +145,7 @@ th.up::before {
 }
 
 th.up::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 35%;
   right: 0.7rem;
@@ -132,7 +155,7 @@ th.up::after {
 }
 
 th.down::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 75%;
   right: 0.5rem;
@@ -142,7 +165,7 @@ th.down::before {
 }
 
 th.down::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 25%;
   right: 0.75rem;
@@ -152,11 +175,11 @@ th.down::after {
 }
 
 tbody tr:nth-child(even) {
-  background-color: rgba(var(--primary-dark-color-rgb), 0.2);
+  background-color: rgba(var(--primary-800), 0.2);
 }
 
 code.color::before {
-  content: '';
+  content: "";
   display: inline-block;
   position: relative;
   background-color: var(--color);
@@ -186,6 +209,34 @@ cite a {
 
 strong {
   font-weight: 700;
+}
+
+ol {
+  list-style: decimal;
+}
+
+ul,
+ul ul ul ul {
+  list-style: disc;
+}
+
+ul ul,
+ul ul ul ul ul {
+  list-style: square;
+}
+
+ul ul ul,
+ul ul ul ul ul ul {
+  list-style: circle;
+}
+
+figure {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+mjx-container svg {
+  display: inline-block;
 }
 
 .name {

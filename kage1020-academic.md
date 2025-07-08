@@ -1,6 +1,6 @@
 ---
 marp: true
-theme: kage-academic
+theme: kage1020-academic
 _class: cover
 paginate: true
 _paginate: false
