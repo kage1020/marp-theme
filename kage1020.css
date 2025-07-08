@@ -235,6 +235,10 @@ hr {
   margin: 1rem;
 }
 
+mjx-container[display="true"] {
+  padding: 0.25rem 0;
+}
+
 mjx-container svg {
   display: inline-block;
 }
