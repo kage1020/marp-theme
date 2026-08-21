@@ -1,0 +1,665 @@
+/* @theme claude-code */
+
+@import "default";
+
+:root {
+  /* base surfaces */
+  --cc-bg: #1f1e1d;
+  --cc-panel: #262624;
+  --cc-panel-alt: #302f2c;
+  --cc-border: #3d3b37;
+  --cc-border-strong: #55524c;
+
+  /* text */
+  --cc-fg: #e8e6df;
+  --cc-fg-strong: #faf9f5;
+  --cc-dim: #8d887e;
+
+  /* accents */
+  --cc-accent: #d97757;
+  --cc-accent-soft: rgba(217, 119, 87, 0.14);
+  --cc-blue: #6c9ee6;
+  --cc-green: #7cc379;
+  --cc-red: #e0655f;
+  --cc-yellow: #d9b25f;
+  --cc-purple: #b28ce0;
+
+  /* layout metrics */
+  --cc-gutter: 40px;
+  --cc-frame-top: 94px;
+  --cc-frame-bottom: 150px;
+  --cc-radius: 14px;
+
+  /* the character shown at the top left. override to use your own image */
+  --cc-character: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23d97757'/%3E%3Cg stroke='%23faf9f5' stroke-width='5.5' stroke-linecap='round'%3E%3Cpath d='M32 14v36M14 32h36M19.5 19.5l25 25M44.5 19.5l-25 25'/%3E%3C/g%3E%3C/svg%3E");
+  --cc-character-size: 56px;
+
+  /* fonts */
+  --cc-font: ui-monospace, SFMono-Regular, "SF Mono", "Cascadia Mono",
+    Menlo, Consolas, "Liberation Mono", "BIZ UDGothic", "Yu Gothic",
+    "Hiragino Sans", "Noto Sans JP", IPAGothic, Meiryo, monospace;
+}
+
+section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.35em;
+  padding: calc(var(--cc-frame-top) + 30px) calc(var(--cc-gutter) + 32px)
+    calc(var(--cc-frame-bottom) + 26px);
+  background-color: var(--cc-bg);
+  background-image: var(--cc-character);
+  background-repeat: no-repeat;
+  background-position: var(--cc-gutter) 22px;
+  background-size: var(--cc-character-size) var(--cc-character-size);
+  color: var(--cc-fg);
+  font-family: var(--cc-font);
+  font-size: 24px;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+
+  /* keep the imported default theme (GitHub markdown based) on a dark palette */
+  color-scheme: dark;
+  --bgColor-default: transparent;
+  --bgColor-muted: rgba(255, 255, 255, 0.025);
+  --bgColor-neutral-muted: var(--cc-panel-alt);
+  --borderColor-default: var(--cc-border);
+  --borderColor-muted: var(--cc-border);
+  --fgColor-default: var(--cc-fg);
+  --fgColor-muted: var(--cc-dim);
+  --fgColor-accent: var(--cc-blue);
+}
+
+/* ------------------------------------------------------------------ *
+ * content frame
+ * ------------------------------------------------------------------ */
+section::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: var(--cc-frame-top);
+  left: var(--cc-gutter);
+  box-sizing: border-box;
+  width: calc(100% - var(--cc-gutter) * 2);
+  height: calc(100% - var(--cc-frame-top) - var(--cc-frame-bottom));
+  border: 1px solid var(--cc-border);
+  border-radius: var(--cc-radius);
+  pointer-events: none;
+}
+
+section > * {
+  position: relative;
+  z-index: 1;
+}
+
+section.middle {
+  justify-content: center;
+}
+
+/* ------------------------------------------------------------------ *
+ * top left: character comment
+ * ------------------------------------------------------------------ */
+.comment {
+  position: absolute;
+  z-index: 2;
+  top: 24px;
+  left: calc(var(--cc-gutter) + var(--cc-character-size) + 18px);
+  max-width: 58%;
+  margin: 0;
+  padding: 0.35em 0.8em;
+  border: 1px solid var(--cc-border);
+  border-radius: 12px;
+  background-color: var(--cc-panel-alt);
+  color: var(--cc-fg);
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.comment::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-right: 8px solid var(--cc-panel-alt);
+  border-bottom: 7px solid transparent;
+}
+
+.comment.thinking {
+  border-style: dashed;
+  background-color: transparent;
+  color: var(--cc-dim);
+  font-style: italic;
+}
+
+.comment.thinking::before {
+  border-right-color: var(--cc-border);
+}
+
+/* ------------------------------------------------------------------ *
+ * top right: header
+ * ------------------------------------------------------------------ */
+section > header {
+  top: 30px;
+  right: calc(var(--cc-gutter) + 6px);
+  left: auto;
+  width: auto;
+  max-width: 45%;
+  padding: 0;
+  color: var(--cc-dim);
+  font-size: 20px;
+  text-align: right;
+}
+
+/* ------------------------------------------------------------------ *
+ * bottom left: footer / bottom right: pagination
+ * ------------------------------------------------------------------ */
+section > footer {
+  right: auto;
+  bottom: 16px;
+  left: calc(var(--cc-gutter) + 6px);
+  width: auto;
+  max-width: 60%;
+  padding: 0;
+  color: var(--cc-dim);
+  font-size: 18px;
+  text-align: left;
+}
+
+section::after {
+  right: calc(var(--cc-gutter) + 6px);
+  bottom: 16px;
+  left: auto;
+  padding: 0;
+  color: var(--cc-dim);
+  font-size: 18px;
+  content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
+}
+
+/* ------------------------------------------------------------------ *
+ * bottom: prompt box holding the slide title
+ * ------------------------------------------------------------------ */
+section > h1 {
+  position: absolute;
+  z-index: 2;
+  right: var(--cc-gutter);
+  bottom: 48px;
+  left: var(--cc-gutter);
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  margin: 0;
+  padding: 0.5em 0.7em;
+  border: 1px solid var(--cc-border-strong);
+  border-radius: var(--cc-radius);
+  background-color: var(--cc-panel);
+  color: var(--cc-fg-strong);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+section > h1::before {
+  color: var(--cc-accent);
+  font-weight: 700;
+  content: ">";
+}
+
+section > h1::after {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.05em;
+  background-color: var(--cc-accent);
+  content: "";
+  opacity: 0.85;
+  transform: translateY(0.15em);
+}
+
+/* ------------------------------------------------------------------ *
+ * headings inside the content area
+ * ------------------------------------------------------------------ */
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 0.4em;
+  color: var(--cc-fg-strong);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+h2 {
+  padding-left: 0.85em;
+  font-size: 1.4em;
+}
+
+h2::before {
+  position: absolute;
+  left: 0;
+  color: var(--cc-accent);
+  content: "\2022";
+}
+
+h3 {
+  font-size: 1.15em;
+}
+
+h3::before {
+  margin-right: 0.4em;
+  color: var(--cc-accent);
+  content: "#";
+}
+
+h4,
+h5,
+h6 {
+  color: var(--cc-dim);
+  font-size: 1em;
+}
+
+/* ------------------------------------------------------------------ *
+ * text elements
+ * ------------------------------------------------------------------ */
+p {
+  margin: 0 0 0.5em;
+}
+
+strong {
+  color: var(--cc-fg-strong);
+  font-weight: 700;
+}
+
+em {
+  color: var(--cc-accent);
+  font-style: normal;
+}
+
+a {
+  color: var(--cc-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+mark {
+  padding: 0 0.25em;
+  border-radius: 4px;
+  background-color: var(--cc-accent-soft);
+  color: var(--cc-accent);
+}
+
+kbd {
+  box-shadow: none;
+  padding: 0.05em 0.4em;
+  border: 1px solid var(--cc-border-strong);
+  border-radius: 5px;
+  background-color: var(--cc-panel-alt);
+  color: var(--cc-fg);
+  font-size: 0.85em;
+}
+
+ul,
+ol {
+  margin: 0 0 0.5em;
+  padding-left: 1.4em;
+}
+
+li {
+  margin: 0.1em 0;
+}
+
+ul > li::marker {
+  color: var(--cc-accent);
+  content: "\25CF  ";
+}
+
+ul ul > li::marker {
+  color: var(--cc-dim);
+  content: "\25CB  ";
+}
+
+ul ul ul > li::marker {
+  color: var(--cc-dim);
+  content: "\2500  ";
+}
+
+ol > li::marker {
+  color: var(--cc-accent);
+}
+
+blockquote {
+  margin: 0.3em 0 0.6em;
+  padding: 0.1em 0 0.1em 0.9em;
+  border-left: 3px solid var(--cc-accent);
+  background: none;
+  color: var(--cc-dim);
+}
+
+blockquote::before,
+blockquote::after {
+  content: none;
+}
+
+cite {
+  display: block;
+  color: var(--cc-dim);
+  font-size: 0.7em;
+  font-style: normal;
+}
+
+cite.center {
+  text-align: center;
+}
+
+cite.right {
+  text-align: right;
+}
+
+hr {
+  height: 1px;
+  margin: 0.6em 0;
+  border: none;
+  background-color: var(--cc-border);
+}
+
+/* ------------------------------------------------------------------ *
+ * code
+ * ------------------------------------------------------------------ */
+code {
+  padding: 0.1em 0.35em;
+  border-radius: 5px;
+  background-color: var(--cc-panel-alt);
+  color: var(--cc-accent);
+  font-family: var(--cc-font);
+  font-size: 0.9em;
+}
+
+pre {
+  margin: 0.3em 0 0.6em;
+  padding: 0.7em 0.9em;
+  border: 1px solid var(--cc-border);
+  border-radius: 10px;
+  background-color: var(--cc-panel);
+  font-size: 0.8em;
+  line-height: 1.55;
+}
+
+pre code {
+  padding: 0;
+  background: none;
+  color: var(--cc-fg);
+}
+
+pre code svg[data-marp-fitting] {
+  max-height: none;
+}
+
+.hljs-subst,
+.hljs-params,
+.hljs-punctuation,
+.hljs-operator,
+.hljs-property {
+  color: var(--cc-fg);
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: var(--cc-dim);
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag,
+.hljs-name {
+  color: var(--cc-purple);
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta .hljs-string {
+  color: var(--cc-green);
+}
+
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-built_in {
+  color: var(--cc-yellow);
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-function .hljs-title,
+.hljs-attr {
+  color: var(--cc-blue);
+}
+
+.hljs-deletion {
+  color: var(--cc-red);
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: 700;
+}
+
+/* ------------------------------------------------------------------ *
+ * table
+ * ------------------------------------------------------------------ */
+table {
+  align-self: center;
+  border-collapse: collapse;
+  border-radius: 10px;
+  font-size: 0.85em;
+}
+
+table th,
+table td {
+  padding: 0.35em 0.9em;
+  border: 1px solid var(--cc-border);
+  text-align: left;
+}
+
+table thead th {
+  background-color: var(--cc-panel-alt);
+  color: var(--cc-fg-strong);
+  font-weight: 700;
+}
+
+table tbody tr {
+  border-top: 1px solid var(--cc-border);
+  background-color: transparent;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.025);
+}
+
+/* ------------------------------------------------------------------ *
+ * media
+ * ------------------------------------------------------------------ */
+figure {
+  margin: 0;
+}
+
+img,
+video {
+  border-radius: 8px;
+}
+
+img[alt~="center"],
+video[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+
+img[alt~="right"],
+video[alt~="right"] {
+  display: block;
+  position: absolute;
+  right: 0;
+}
+
+img[alt~="plain"] {
+  border-radius: 0;
+}
+
+/* ------------------------------------------------------------------ *
+ * Claude Code flavored helpers
+ * ------------------------------------------------------------------ */
+.tool {
+  margin: 0.15em 0;
+  color: var(--cc-fg);
+}
+
+.tool::before {
+  margin-right: 0.5em;
+  color: var(--cc-accent);
+  content: "\23FA";
+}
+
+.result {
+  margin: 0 0 0.35em;
+  padding-left: 1.6em;
+  color: var(--cc-dim);
+  font-size: 0.9em;
+}
+
+.result::before {
+  margin-right: 0.5em;
+  margin-left: -1.2em;
+  content: "\23BF";
+}
+
+.added {
+  color: var(--cc-green);
+}
+
+.removed {
+  color: var(--cc-red);
+}
+
+.dim {
+  color: var(--cc-dim);
+}
+
+.accent {
+  color: var(--cc-accent);
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}
+
+/* ------------------------------------------------------------------ *
+ * slides using a split background image
+ * ------------------------------------------------------------------ */
+/* the content frame is drawn against the whole slide, so it cannot follow
+   the narrowed content area. drop it instead of overlapping the image. */
+section[data-marpit-advanced-background-split]::before {
+  content: none;
+}
+
+section[data-marpit-advanced-background-split="left"] {
+  background-position-x: calc(
+    var(--marpit-advanced-background-split, 50%) + var(--cc-gutter)
+  );
+}
+
+/* ------------------------------------------------------------------ *
+ * cover slide
+ * ------------------------------------------------------------------ */
+section.cover {
+  align-items: center;
+  justify-content: center;
+  padding: 96px;
+  background-image: none;
+}
+
+section.cover::before {
+  content: none;
+}
+
+section.cover > h1 {
+  position: static;
+  display: block;
+  max-width: 90%;
+  margin: 0 0 0.6em;
+  padding: 0.8em 1.2em;
+  border: 1px solid var(--cc-accent);
+  border-radius: 18px;
+  background-color: var(--cc-panel);
+  font-size: 44px;
+  text-align: center;
+}
+
+section.cover > h1::before {
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-right: 0.4em;
+  background-image: var(--cc-character);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  content: "";
+  transform: translateY(0.1em);
+}
+
+section.cover > h1::after {
+  content: none;
+}
+
+section.cover > :is(h2, h3, p, ul, ol) {
+  color: var(--cc-dim);
+  text-align: center;
+}
+
+section.cover > h2 {
+  padding-left: 0;
+  font-size: 1.1em;
+  font-weight: 400;
+}
+
+section.cover > h2::before {
+  content: none;
+}
+
+/* ------------------------------------------------------------------ *
+ * divider slide
+ * ------------------------------------------------------------------ */
+section.divider {
+  align-items: flex-start;
+  justify-content: center;
+  padding-right: 120px;
+  padding-left: 120px;
+}
+
+section.divider > h2 {
+  padding-left: 0;
+  font-size: 2em;
+}
+
+section.divider > h2::before {
+  position: static;
+  margin-right: 0.4em;
+  content: "/";
+}
