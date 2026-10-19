@@ -1,0 +1,530 @@
+/*
+ * @theme kage1020-ds
+ * @author kage1020
+ * @size 16:9 1280px 720px
+ * @size 4:3 960px 720px
+ *
+ * kage1020 デザインシステムに合わせたテーマ。
+ * ほぼモノクロで色味は accent ひとつ、信号は danger ひとつ。影・グラデーションは使わず、
+ * 境界は面差し（bg-subtle）か hairline（line 1px）のどちらかで引く。
+ *
+ * 色はデザインシステムの値をそのまま使う。文字・余白・角丸はスライド用に × 1.75
+ * （本文 16px → 28px）した値。`class: dark`（または `invert`）でダークテーマ。
+ */
+
+:root {
+  /* 色（light） */
+  --bg: oklch(1 0 0);
+  --bg-subtle: oklch(0.985 0 0);
+  --fill: oklch(0.97 0 0);
+  --line: oklch(0.922 0 0);
+  --border: oklch(0.64 0 0);
+  --ink: oklch(0.145 0 0);
+  --ink-muted: oklch(0.52 0 0);
+  --primary: oklch(0.205 0 0);
+  --on-primary: oklch(0.985 0 0);
+  --accent: #2d70b3;
+  --danger: oklch(0.577 0.245 27.325);
+  --danger-soft: #fef0f0;
+  --danger-line: #f8b8bb;
+  --mark: #ffeab2;
+  --focus: var(--accent);
+  --link: var(--ink);
+  --series-1: #2d70b3;
+  --series-2: #b86e00;
+  --series-3: #00805c;
+  --series-4: #a8467f;
+
+  /* フォントは読み込まず OS 標準のスタック */
+  --font-sans: system-ui, -apple-system, "Segoe UI", "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Noto Sans JP", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+
+  /* 角丸（radius-sm 4 / md 6 / lg 8 の × 1.75） */
+  --radius-sm: 7px;
+  --radius-md: 10.5px;
+  --radius-lg: 14px;
+}
+
+section.dark,
+section.invert {
+  --bg: oklch(0.145 0 0);
+  --bg-subtle: oklch(0.205 0 0);
+  --fill: oklch(0.269 0 0);
+  --line: #ffffff1a;
+  --border: oklch(0.52 0 0);
+  --ink: oklch(0.985 0 0);
+  --ink-muted: oklch(0.708 0 0);
+  --primary: oklch(0.922 0 0);
+  --on-primary: oklch(0.205 0 0);
+  --accent: #6ea8e6;
+  --danger: oklch(0.704 0.191 22.216);
+  --danger-soft: #271515;
+  --danger-line: #6c2e2f;
+  --mark: #543f07;
+  --series-1: #6ea8e6;
+  --series-2: #f0a04b;
+  --series-3: #3cc39a;
+  --series-4: #e08ac0;
+}
+
+/* スライド：本文は body（16 / 1.6）× 1.75 */
+section {
+  width: 1280px;
+  height: 720px;
+  padding: 72px;
+  display: block;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 28px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+section > :last-child {
+  margin-bottom: 0;
+}
+
+/* 見出し：太さを持つのは見出しだけ。スライドの題（h1 / h2）の下に hairline を 1 本 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 28px;
+  color: var(--ink);
+}
+
+h1 {
+  font-size: 42px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 35px;
+  line-height: 1.5;
+  font-weight: 700;
+}
+
+h1,
+h2 {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+h3 {
+  font-size: 31.5px;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 28px;
+  line-height: 1.6;
+  font-weight: 600;
+}
+
+p,
+ul,
+ol,
+pre,
+blockquote,
+table,
+figure {
+  margin: 0 0 28px;
+}
+
+strong {
+  font-weight: 700;
+}
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 0.2em;
+}
+
+mark {
+  background: var(--mark);
+  color: var(--ink);
+  padding: 0 0.1em;
+}
+
+hr {
+  height: 1px;
+  margin: 28px 0;
+  border: 0;
+  background: var(--line);
+}
+
+/* リスト：印は ink-muted、番号は mono */
+ul {
+  padding-left: 1.25em;
+}
+
+ol {
+  padding-left: 1.75em;
+}
+
+li + li,
+li > ul,
+li > ol {
+  margin-top: 0.25em;
+}
+
+li > ul,
+li > ol {
+  margin-bottom: 0;
+}
+
+li::marker {
+  color: var(--ink-muted);
+}
+
+ol > li::marker {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+/* コード：アドレス・パス・コマンドは mono。ブロックは bg-subtle の面だけで分ける */
+code,
+kbd,
+pre {
+  font-family: var(--font-mono);
+}
+
+:not(pre) > code {
+  font-size: 0.875em;
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+  background: var(--fill);
+}
+
+pre {
+  padding: 24px 28px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-subtle);
+  font-size: 22.75px;
+  line-height: 1.55;
+  overflow: auto;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* シンタックスハイライト：色味は accent ひとつ。キーワードは太さ、コメントは ink-muted */
+.hljs-comment,
+.hljs-quote,
+.hljs-meta {
+  color: var(--ink-muted);
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-type,
+.hljs-section {
+  font-weight: 600;
+}
+
+.hljs-string,
+.hljs-number,
+.hljs-literal,
+.hljs-regexp,
+.hljs-attr,
+.hljs-symbol {
+  color: var(--accent);
+}
+
+.hljs-addition {
+  background: var(--fill);
+}
+
+.hljs-deletion {
+  background: var(--danger-soft);
+}
+
+kbd {
+  display: inline-block;
+  min-width: 1em;
+  padding: 0.05em 0.3em;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 0.75em;
+  font-weight: 500;
+  line-height: 1.33;
+  text-align: center;
+}
+
+/* 引用：枠で囲まず bg-subtle の面で分ける */
+blockquote {
+  padding: 24px 32px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-subtle);
+}
+
+blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+cite {
+  display: block;
+  color: var(--ink-muted);
+  font-size: 21px;
+  font-style: normal;
+  line-height: 28px;
+}
+
+cite a {
+  color: inherit;
+}
+
+/* cite はブロックなので、続く改行は詰める */
+cite + br {
+  display: none;
+}
+
+cite.center {
+  text-align: center;
+}
+
+cite.right {
+  text-align: right;
+}
+
+/* 表：横の hairline だけで区切り、縞と縦線は使わない。見出しは meta の灰色 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 24.5px;
+  line-height: 1.4;
+}
+
+th {
+  padding: 14px 21px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink-muted);
+  font-size: 21px;
+  font-weight: 400;
+  text-align: left;
+  white-space: nowrap;
+}
+
+td {
+  padding: 14px 21px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: baseline;
+}
+
+th:first-child,
+td:first-child {
+  padding-left: 0;
+}
+
+th:last-child,
+td:last-child {
+  padding-right: 0;
+}
+
+/* 右揃えの列は数値とみなし、等幅で桁を揃える */
+td[style*="right"] {
+  font-family: var(--font-mono);
+  font-size: 22.75px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 並び順は記号で示す */
+th.up::after {
+  content: " ↑";
+}
+
+th.down::after {
+  content: " ↓";
+}
+
+/* 画像 */
+img {
+  max-width: 100%;
+}
+
+img[alt~="center"],
+video[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+
+img[alt~="right"],
+video[alt~="right"] {
+  float: right;
+  max-width: 50%;
+  margin: 0 0 28px 35px;
+}
+
+/* 色見本 */
+code.color::before {
+  content: "";
+  display: inline-block;
+  width: 0.6em;
+  height: 0.6em;
+  margin-right: 0.3em;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--color);
+  vertical-align: -0.02em;
+}
+
+/* 枠で囲んだ箱は 2 つだけ：入力などのまとまり（既定）と、確認が必要な事柄（danger） */
+.callout {
+  margin-bottom: 28px;
+  padding: 28px 35px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+}
+
+.callout.danger {
+  border-color: var(--danger-line);
+  background: var(--danger-soft);
+}
+
+.callout > :last-child {
+  margin-bottom: 0;
+}
+
+/* 補足：meta（12px × 1.75）の ink-muted。押せないことを示す */
+.meta,
+.caption {
+  color: var(--ink-muted);
+  font-size: 21px;
+  line-height: 28px;
+}
+
+.caption {
+  text-align: center;
+}
+
+.before-right-arrow::before {
+  content: "";
+  display: inline-block;
+  width: 1.5em;
+  height: 1em;
+  margin-right: 0.5em;
+  background: var(--ink);
+  clip-path: polygon(0 33%, 50% 33%, 50% 15%, 100% 50%, 50% 85%, 50% 67%, 0 67%);
+  vertical-align: -0.1em;
+}
+
+/* ヘッダー・フッター・ページ番号：meta の ink-muted。番号は mono */
+header,
+footer {
+  position: absolute;
+  left: 72px;
+  right: 72px;
+  color: var(--ink-muted);
+  font-size: 21px;
+  line-height: 28px;
+}
+
+header {
+  top: 28px;
+}
+
+footer {
+  bottom: 28px;
+  right: 240px;
+}
+
+section::after {
+  right: 72px;
+  bottom: 28px;
+  padding: 0;
+  color: var(--ink-muted);
+  content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
+  font-family: var(--font-mono);
+  font-size: 21px;
+  font-variant-numeric: tabular-nums;
+  line-height: 28px;
+}
+
+/* 表紙：題は display（32px × 1.75）で左下。右上はデザインシステムの表紙と同じ構成
+   （ink の柱・border の面・accent のカーソル・danger の棒・space-4 間隔の点） */
+section.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+section.cover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 24px;
+  width: 424px;
+  height: 240px;
+  padding: 32px 0 144px 184px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(circle, var(--ink-muted) 1.5px, transparent 2px) 0 0 / 16px 16px content-box,
+    linear-gradient(var(--ink), var(--ink)) 0 0 / 160px 240px no-repeat border-box,
+    linear-gradient(var(--border), var(--border)) 176px 112px / 128px 128px no-repeat border-box,
+    linear-gradient(var(--accent), var(--accent)) 320px 176px / 32px 64px no-repeat border-box,
+    linear-gradient(var(--danger), var(--danger)) 368px 232px / 48px 8px no-repeat border-box;
+}
+
+section.cover h1 {
+  margin-bottom: 21px;
+  padding-bottom: 0;
+  border-bottom: 0;
+  font-size: 56px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+section.cover h2 {
+  margin-bottom: 28px;
+  padding-bottom: 0;
+  border-bottom: 0;
+  color: var(--ink-muted);
+  font-weight: 400;
+}
+
+section.cover p {
+  margin-bottom: 0;
+  color: var(--ink-muted);
+  font-size: 24.5px;
+  line-height: 35px;
+}
+
+section.cover .name {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* 区切り（appendix）：bg-subtle の面だけで通常のスライドと分ける */
+section.appendix {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--bg-subtle);
+}
+
+section.appendix h1,
+section.appendix h2 {
+  padding-bottom: 0;
+  border-bottom: 0;
+  font-size: 56px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
