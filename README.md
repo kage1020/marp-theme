@@ -11,7 +11,8 @@ use `.vscode/settings.json` to set the theme
   "markdown.marp.themes": [
     "https://raw.githubusercontent.com/kage1020/marp-theme/main/kage1020.css",
     "https://raw.githubusercontent.com/kage1020/marp-theme/main/kage1020-academic.css",
-    "https://raw.githubusercontent.com/kage1020/marp-theme/main/claude-code.css"
+    "https://raw.githubusercontent.com/kage1020/marp-theme/main/claude-code.css",
+    "https://raw.githubusercontent.com/kage1020/marp-theme/main/kage1020-ds.css"
   ]
 }
 ```
@@ -237,3 +238,39 @@ section {
 | `--cc-gutter`           | `40px`    | horizontal margin of the frame     |
 | `--cc-frame-top`        | `94px`    | top position of the content frame  |
 | `--cc-frame-bottom`     | `150px`   | bottom position of the content frame |
+
+## kage1020-ds
+
+A theme that follows the kage1020 design system: near-monochrome, one accent hue (`accent`), one signal hue (`danger`), no shadows or gradients, and boundaries drawn either by a surface difference (`bg-subtle`) or a 1px hairline (`line`). Colors are the design system tokens as-is; type, spacing and radii are scaled ×1.75 for slides (body 16px → 28px). Fonts are not loaded; the OS default `sans` / `mono` stacks are used.
+
+```markdown
+---
+marp: true
+theme: kage1020-ds
+paginate: true
+---
+```
+
+See [kage1020-ds.md](kage1020-ds.md) for every feature. HTML must be enabled (`--html` for Marp CLI, `markdown.marp.enableHtml` for VS Code) to use the `<div>`, `<cite>`, `<kbd>` and `<p class>` snippets below.
+
+![kage1020-ds cover](.docs/ds-cover.png)
+
+![kage1020-ds default](.docs/ds-default.png)
+
+| Markdown | Result |
+| --- | --- |
+| `_class: cover` | Title slide with the design system's cover art (top right) |
+| `_class: appendix` | Section divider on the `bg-subtle` surface |
+| `_class: dark` (or `invert`) | Dark theme; combine as `_class: cover dark` |
+| `header` / `footer` / `paginate` | `meta` text in `ink-muted`; page number as `3 / 13` in `mono` |
+| `\| --: \|` (right-aligned column) | Treated as numbers: `mono` with tabular figures |
+| `<th class="up">` / `<th class="down">` | Sort direction shown as `↑` / `↓` |
+| `<div class="callout">` / `<div class="callout danger">` | The only two boxed containers: a group, or something that needs confirmation |
+| `<kbd>⌘</kbd>` | Key hint |
+| `<mark>` | Highlight on the referenced part of the source text |
+| `<p class="meta">` / `<p class="caption">` | Supplementary text in `ink-muted` |
+| `![center](…)` / `![right](…)` | Centered / right-floated image |
+| `<code class="color" style="--color: #2d70b3">` | Color swatch |
+| `<cite>` / `<cite class="center">` / `<cite class="right">` | Citation |
+
+![kage1020-ds dark](.docs/ds-dark.png)
